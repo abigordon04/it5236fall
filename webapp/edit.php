@@ -35,10 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	//status code 204
 	if ($httpcode == 204){
 		header("Location: index.php");
-		exit();
 	} else {
 		header("Location: index.php?error=edit");
-		exit();
 	}
 }
 
