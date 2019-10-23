@@ -31,9 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == "PUT") {
 	//ensure fields are in json
 	if (array_key_exists('completed', $task)) {
 		$complete = $task["completed"];
-		//if($complete==1){
-			
-		//}
 	} else {
 		//return 4xx error
 		http_response_code(400);
@@ -50,7 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == "PUT") {
 	}
 
 	if (array_key_exists('taskDate', $task)) {
-		var_dump($task['taskDate']);
 		$taskDate = $task['taskDate'];
 	} else {
 		//return 4xx error
@@ -58,9 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == "PUT") {
 		echo "missing task date";
 		exit();
 	}
-
-	//add the other two fields here
-
 
 	if (!$dbconnecterror) {
 		try {
@@ -74,13 +67,10 @@ if ($_SERVER['REQUEST_METHOD'] == "PUT") {
 			http_response_code(204); //no content
 			exit();
 
-			
 		} catch (PDOException $e) {
-		
-		http_response_code(504); //Gateway Timeout
-		echo "database exception";
-		exit();
-			
+			http_response_code(504); //Gateway Timeout
+			echo "database exception";
+			exit();	
 		}	
 	} else {
 		http_response_code(504); //Gateway Timeout
@@ -111,9 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == "PUT") {
 		
 		http_response_code(504); //Gateway Timeout
 		echo "database exception";
-		var_dump($e);
 		exit();
-			
 		}
 	}		
 	
@@ -123,9 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] == "PUT") {
 	//ensure fields are in json
 	if (array_key_exists('completed', $task)) {
 		$complete = $task["completed"];
-		//if($complete==1){
-			
-		//}
 	} else {
 		//return 4xx error
 		http_response_code(400);
