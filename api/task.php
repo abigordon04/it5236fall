@@ -19,6 +19,11 @@ try{
 if ($_SERVER['REQUEST_METHOD'] == "PUT") {
 	if(array_key_exists('listID',$_GET)){
 		$listID = $_GET['listID'];
+		if($complete==TRUE){
+			$complete=1;
+		} else {
+			$complete=0;
+		}
 	} else{
 		http_response_code(400);
 		echo "missing taskID";
@@ -111,7 +116,12 @@ if ($_SERVER['REQUEST_METHOD'] == "PUT") {
 	//ensure fields are in json
 	if (array_key_exists('completed', $task)) {
 		$complete = $task["completed"];
-	} else {
+		if($complete==TRUE){
+			$complete=1;
+		} else {
+			$complete=0;
+		}
+	}else{
 		//return 4xx error
 		http_response_code(400);
 		echo 'complete missing';
