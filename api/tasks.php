@@ -17,12 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	}
 
 	try {
-		$sql = "SELECT * FROM doList";
+		$sql = "SELECT listID, listItem AS taskName, finishDate AS taskDate, complete AS completed FROM doList";
 		$stmt = $dbh->prepare($sql);
 		$stmt->execute();
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		http_response_code(200);
-		echo json_encode($result);
+		$final = [];
+		foreach($result as $item) {
+			$item['completed'] = $item['completed'] == 1 ? true : false; 
+			$final[] = $item;
+		}
+		echo json_encode($final);
 		exit();
 		
 	} catch (PDOException $e) {
@@ -35,4 +40,5 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	echo "method not allowed";
 	exit();
 }
+
 
