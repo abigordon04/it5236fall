@@ -31,9 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	//status code 201
 	if ($httpcode == 201){
 		header("Location: index.php");
-		exit();
 	} else {
 		header("Location: index.php?error=add");
-		exit();
 	}
 }
