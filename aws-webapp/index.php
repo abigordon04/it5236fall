@@ -1,7 +1,7 @@
 <?php
 //make a call to the api
 //build url for api
-$url= "http://3.230.57.46/api/tasks.php";
+$url= "https://1gqqhmscqj.execute-api.us-east-1.amazonaws.com/default/tasks";
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
@@ -36,14 +36,14 @@ curl_close($ch);
 		<hr>
 
 			<?php if ($httpcode == 200) { ?>
-				<?php foreach(json_decode($response, true) as $item){ ?>
+				<?php foreach(json_decode($response, true)["Items"] as $item){ ?>
 					<div class="list">
 						<form method="POST" action="edit.php" style="display: inline-block">
 							<input type="hidden" 	name="listID" value="<?php echo $item["listID"];?>" >
-							<input type="checkbox"	name="fin" <?php if($item["complete"]=='1'){echo "checked='checked'";} ?> >
-							<input type="text" 	name="listItem" size="50" value="<?php echo $item["listItem"];?>" maxlength="100" >
+							<input type="checkbox"	name="fin" <?php if($item["completed"]){echo "checked='checked'";} ?> >
+							<input type="text" 	name="listItem" size="50" value="<?php echo $item["taskName"];?>" maxlength="100" >
 							<span>by:</span>
-							<input type="date" 	name="finBy" value="<?php if($item['finishDate']=='0000-00-00'){echo '';} else {echo $item['finishDate'];} ?>" >
+							<input type="date" 	name="finBy" value="<?php if($item['taskDate']){echo $item['taskDate'];} ?>" >
 							<input type="submit" 	name="submitEdit" value="&check;" >
 						</form>
 						<form method="POST" action="delete.php" style="display: inline-block">

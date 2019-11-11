@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			
 	//make a call to the api
 	//build url for api
-	$url= "http://3.230.57.46/api/task.php?listID=$listID";
+	$url= "https://1gqqhmscqj.execute-api.us-east-1.amazonaws.com/default/task?listID=$listID";
 	
 	//create Json string
 	$data = array('completed'=>$complete,'taskName'=>$listItem, 'taskDate'=>$finBy);
@@ -32,8 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 	curl_close($ch);
 	
-	//status code 204
-	if ($httpcode == 204){
+	if ($httpcode == 200){
 		header("Location: index.php");
 	} else {
 		header("Location: index.php?error=edit");

@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	
 	//make a call to the api
 	//build url for api
-	$url = "http://3.230.57.46/api/task.php?listID=$listID";
+	$url = "https://1gqqhmscqj.execute-api.us-east-1.amazonaws.com/default/task?listID=$listID";
 		
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	curl_close($ch);
 	
 	// go back to the home page, showing any error message if we need to
-	if ($httpcode === 204) {	
+	if ($httpcode === 200) {	
 		header("Location: index.php");
 	} else {
 		header("Location: index.php?error=delete");
