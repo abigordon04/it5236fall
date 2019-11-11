@@ -1,0 +1,31 @@
+#siteName{
+	font-family: 'Orbitron', sans-serif;
+	font-size: 48px;
+	padding-left: 25px;
+	margin-bottom: 0;
+}
+
+body{
+	padding-left: 20px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+input, span{
+	font-family: 'Chilanka', sans-serif;
+	font-size: 16px;
+}
+
+.error {
+	padding-top: 25px;
+	font-family: 'Chilanka', sans-serif;
+	color: red;
+	
+}
+
+.list{
+	padding-top: 10px;
+}
