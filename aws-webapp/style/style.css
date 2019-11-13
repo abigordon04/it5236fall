@@ -29,3 +29,7 @@ input, span{
 .list{
 	padding-top: 10px;
 }
+
+.hidden {
+	display: none;
+}

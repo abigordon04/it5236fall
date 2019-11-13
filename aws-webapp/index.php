@@ -82,5 +82,47 @@ curl_close($ch);
 				</div>
 				<?php } ?>
 			<?php } ?>
+
+			<footer>
+				<span class="hidden" id="greeting">Welcome!</span> You first visited this site from this computer on <span id= "time"></span>
+				<button type = "button"> DoNotTrack</button>
+			</footer>
+			
+		<script>
+		//Get connections to the DOM
+			var footer = document.querySelector("footer");
+			var greeting = document.querySelector("footer #greeting");
+			var timeVisited = document.querySelector("footer #time");
+			var noTrack = document.querySelector("footer button");
+			//local storage key names
+			var STORAGE_KEY_TIME = "TimeVisited";
+			var STORAGE_KEY_DONT = "DoNotTrack";
+			//check to see if user wants to be tracked
+			//access local storage
+			if (!localStorage.getItem(STORAGE_KEY_DONT)) {
+					
+				//VISITOR has not come to site before
+				if (!localStorage.getItem(STORAGE_KEY_TIME)){
+					//get current date
+					var presentDate = new Date();
+					var dateFormat = presentDate.toDateString() + " " + presentDate.toLocaleTimeString("en-us");
+					//add the date to local storage
+					localStorage.setItem(STORAGE_KEY_TIME,dateFormat);
+					greeting.classList.remove("hidden");
+				}
+				
+				//display stored visit time
+				var storedDate = localStorage.getItem(STORAGE_KEY_TIME);
+				timeVisited.innerHTML = storedDate;
+			}
+			
+			//let visitor not be tracked
+			noTrack.addEventListener("click", function(){
+				localStorage.removeItem(STORAGE_KEY_TIME);
+				localStorage.setItem(STORAGE_KEY_DONT, "TRUE");
+			});
+				
+				
+		</script>
 	</body>
 </html>
