@@ -114,6 +114,8 @@ curl_close($ch);
 				//display stored visit time
 				var storedDate = localStorage.getItem(STORAGE_KEY_TIME);
 				timeVisited.innerHTML = storedDate;
+			}else{
+				footer.classList.add("hidden");
 			}
 			
 			//let visitor not be tracked
